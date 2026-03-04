@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary:    #0D0D0D;   /* near-black main background */
+    --bg-secondary:  #141414;   /* sidebar background */
+    --bg-card:       #1A1A1A;   /* cards, panels */
+    --bg-hover:      #222222;   /* hover states */
+    --accent:        #E8192C;   /* FlowNote red — record button, active nav, speaker labels */
+    --accent-dim:    #3D0A0F;   /* red with low opacity — waveform background, tag pills */
+    --text-primary:  #FFFFFF;
+    --text-secondary:#A0A0A0;
+    --text-muted:    #555555;
+    --border:        #2A2A2A;
+    --border-light:  #333333;
+    --speaker-1:     #E8192C;   /* Speaker 1 label colour */
+    --speaker-2:     #E8192C;   /* Speaker 2 label colour (same red, distinguish via opacity) */
+    --waveform-bg:   rgba(232, 25, 44, 0.15);
+    --waveform-fill: #E8192C;
+    --radius:        8px;
+    --radius-lg:     12px;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}

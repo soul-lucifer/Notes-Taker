@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  avatarUrl String?
+  plan      Plan     @default(FREE)
+  createdAt DateTime @default(now())
+  notes     Note[]
+}
+
+enum Plan {
+  FREE
+  PRO
+  TEAM
+}
+
+model Note {
+  id         String      @id @default(cuid())
+  userId     String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String      @default("Untitled Note")
+  audioKey   String      
+  duration   Int?        
+  status     NoteStatus  @default(QUEUED)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  transcript Transcript[]
+  insights   AIInsight?
+}
+
+enum NoteStatus {
+  QUEUED
+  PROCESSING
+  COMPLETE
+  ERROR
+}
+
+model Transcript {
+  id           String  @id @default(cuid())
+  noteId       String
+  note         Note    @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  speakerLabel String
+  text         String
+  startTime    Float
+  endTime      Float
+  index        Int
+}
+
+model AIInsight {
+  id           String   @id @default(cuid())
+  noteId       String   @unique
+  note         Note     @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  summary      String
+  keyTakeaways String[]
+  actionItems  String[]
+  tags         String[]
+  createdAt    DateTime @default(now())
+}
