@@ -1,6 +1,7 @@
 {
     "name": "flownote-monorepo",
     "private": true,
+    "packageManager": "npm@10.5.0",
     "engines": {
         "node": "20.x"
     },
