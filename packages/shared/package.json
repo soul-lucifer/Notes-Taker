@@ -2,6 +2,9 @@
     "name": "@flownote/shared",
     "version": "0.0.0",
     "private": true,
+    "scripts": {
+        "build": "echo 'Shared built'"
+    },
     "main": "src/types.ts",
     "types": "src/types.ts"
 }
